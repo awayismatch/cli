@@ -9,12 +9,34 @@ import {
     ListView
 } from 'react-native';
 class Component extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
             dataSource: ds.cloneWithRows(this._genRows()),
         };
+        this.props.navigator.setOnNavigatorEvent(this._onNavigatorEvent.bind(this));
+    }
+    _onNavigatorEvent(event){
+        if (event.type === 'NavBarButtonPress') {
+            if (event.id === 'fri-request') {
+                this.props.navigator.push({
+                    screen: 'screens.test', // unique ID registered with Navigation.registerScreen
+                    title: '好友申请', // navigation bar title of the pushed screen (optional)
+                    overrideBackPress:true,
+                    passProps: {}, // Object that will be passed as props to the pushed screen (optional)
+                    animated: true, // does the push have transition animation or does it happen immediately (optional)
+                    backButtonTitle: undefined, // override the back button title (optional)
+                    backButtonHidden: false, // hide the back button altogether (optional)
+                    navigatorStyle: {}, // override the navigator style for the pushed screen (optional)
+                    navigatorButtons: {} // override the nav buttons for the pushed screen (optional)
+                })
+                this.props.navigator.toggleTabs({
+                    to: 'hidden', // required, 'hidden' = hide tab bar, 'shown' = show tab bar
+                    animated: false // does the toggle have transition animation or does it happen immediately (optional)
+                });
+            }
+        }
     }
     _genRows(){
         let rows = []
