@@ -8,6 +8,8 @@ import {
     Button,
     Image
 } from 'react-native';
+import { StackNavigator } from 'react-navigation';
+import InfoEdit from '../__global/InfoEdit';
 
 class Component extends React.Component {
     static navigationOptions = {
@@ -16,8 +18,13 @@ class Component extends React.Component {
     };
     constructor(props){
         super(props)
-    }
+        this.navigateTo = this.navigateTo.bind(this)
 
+    }
+    navigateTo(name,field){
+        const {navigate} = this.props.navigation
+        navigate(name,{field})
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -30,28 +37,40 @@ class Component extends React.Component {
                 </View>
                 <View style={styles.item}>
                     <Text style={styles.name}>昵称</Text>
-                    <Text style={styles.content}>awayisblue</Text>
+                    <Text style={styles.content} onPress={()=>{
+                        this.navigateTo('InfoEdit','昵称')
+                    }}>awayisblue</Text>
 
                 </View>
                 <View style={styles.item}>
                     <Text style={styles.name}>个性签名</Text>
-                    <Text style={styles.content}>Ta什么也没说</Text>
+                    <Text style={styles.content} onPress={()=>{
+                        this.navigateTo('InfoEdit','个性签名')
+                    }}>Ta什么也没说</Text>
                 </View>
                 <View style={styles.item}>
                     <Text style={styles.name}>生日</Text>
-                    <Text style={styles.content}>1993-08-08</Text>
+                    <Text style={styles.content} onPress={()=>{
+                        this.navigateTo('InfoEdit','生日')
+                    }}>1993-08-08</Text>
                 </View>
                 <View style={styles.item}>
                     <Text style={styles.name}>性别</Text>
-                    <Text style={styles.content}>男</Text>
+                    <Text style={styles.content} onPress={()=>{
+                        this.navigateTo('InfoEdit','性别')
+                    }}>男</Text>
                 </View>
                 <View style={styles.item}>
                     <Text style={styles.name}>地区</Text>
-                    <Text style={styles.content}>广东广州</Text>
+                    <Text style={styles.content} onPress={()=>{
+                        this.navigateTo('InfoEdit','地区')
+                    }}>广东广州</Text>
                 </View>
                 <View style={styles.item}>
                     <Text style={styles.name}>邮箱</Text>
-                    <Text style={styles.content}>awayisblue@qq.com</Text>
+                    <Text style={styles.content} onPress={()=>{
+                        this.navigateTo('InfoEdit','邮箱')
+                    }}>awayisblue@qq.com</Text>
                 </View>
                 <View style={styles.item}>
                     <Text style={styles.name}>手机</Text>
@@ -120,4 +139,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         }
     }
 }
+
+
 export default connect(mapStateToProps,mapDispatchToProps)(Component)
