@@ -1,42 +1,53 @@
 
-import React, { Component } from 'react';
+import React  from 'react';
 import {connect} from 'react-redux'
 import {
     StyleSheet,
     Text,
     View,
-    Button
+    Button,
+    ListView,
+    RefreshControl
 } from 'react-native';
+import Item from './Item'
 
-class App extends Component {
+class Component extends React.Component {
     static navigationOptions = {
         title: '聊天室',
         headerRight: <Button title='创建'/>
     };
     constructor(props){
         super(props)
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        let list = []
+        for(let i=0;i<20;i++){
+            list.push(i)
+        }
+        this.state = {
+            dataSource: ds.cloneWithRows(list),
+            refreshing:false
+        };
     }
-
+    _onRefresh() {
+        this.setState({refreshing: true});
+        setTimeout(() => {
+            this.setState({refreshing: false});
+        },1000);
+    }
     render() {
-        let {demo,onIncrease,onDecrease} = this.props
+
         return (
-            <View style={styles.container}>
-                <Text style={styles.demo}>
-                    Redux demo:{demo}
-                </Text>
-                <Button onPress={onIncrease} title='Increase'/>
-                <Button onPress={onDecrease} title='Decrease'/>
-                <Text style={styles.welcome}>
-                    Welcome to React Native!
-                </Text>
-                <Text style={styles.instructions}>
-                    To get started, edit index.android.js
-                </Text>
-                <Text style={styles.instructions}>
-                    Double tap R on your keyboard to reload,{'\n'}
-                    Shake or press menu button for dev menu
-                </Text>
-            </View>
+            <ListView dataSource={this.state.dataSource}
+                      renderRow={(rowData) => <Item/>}
+                      refreshControl={
+                          <RefreshControl
+                            refreshing={this.state.refreshing}
+                            onRefresh={this._onRefresh.bind(this)}
+                          />
+                      }
+            >
+
+            </ListView>
         );
     }
 }
@@ -83,4 +94,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         }
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(App)
+export default connect(mapStateToProps,mapDispatchToProps)(Component)

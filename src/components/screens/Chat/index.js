@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react';
+import React  from 'react';
 import {connect} from 'react-redux'
 import {
     StyleSheet,
@@ -9,7 +9,7 @@ import {
     ListView
 } from 'react-native';
 import Item from './Item'
-class App extends Component {
+class Component extends React.Component {
     static navigationOptions = {
         title: '会话',
         backgroundColor: 'grey',
@@ -24,9 +24,6 @@ class App extends Component {
         this.state = {
             dataSource: ds.cloneWithRows(list)
         };
-    }
-    _ds(){
-
     }
     render() {
 
@@ -82,4 +79,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         }
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(App)
+export default connect(mapStateToProps,mapDispatchToProps)(Component)

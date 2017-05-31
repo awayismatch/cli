@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react';
+import React  from 'react';
 import {connect} from 'react-redux'
 import {
     StyleSheet,
@@ -8,7 +8,7 @@ import {
     Button
 } from 'react-native';
 
-class App extends Component {
+class Component extends React.Component {
     static navigationOptions = {
         title: '我',
         headerRight: <Button title='设置'/>
@@ -83,4 +83,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         }
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(App)
+export default connect(mapStateToProps,mapDispatchToProps)(Component)
