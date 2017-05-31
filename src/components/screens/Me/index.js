@@ -5,7 +5,8 @@ import {
     StyleSheet,
     Text,
     View,
-    Button
+    Button,
+    Image
 } from 'react-native';
 
 class Component extends React.Component {
@@ -18,24 +19,44 @@ class Component extends React.Component {
     }
 
     render() {
-        let {demo,onIncrease,onDecrease} = this.props
         return (
             <View style={styles.container}>
-                <Text style={styles.demo}>
-                    Redux demo:{demo}
-                </Text>
-                <Button onPress={onIncrease} title='Increase'/>
-                <Button onPress={onDecrease} title='Decrease'/>
-                <Text style={styles.welcome}>
-                    Welcome to React Native!
-                </Text>
-                <Text style={styles.instructions}>
-                    To get started, edit index.android.js
-                </Text>
-                <Text style={styles.instructions}>
-                    Double tap R on your keyboard to reload,{'\n'}
-                    Shake or press menu button for dev menu
-                </Text>
+                <View style={styles.item}>
+                    <Text style={styles.name}>头像</Text>
+                    <View style={styles.avatar}>
+                        <Image source={{uri: 'http://p1.qzone.la/upload/3/bp6l0xdv.jpg'}}
+                               style={styles.image} />
+                    </View>
+                </View>
+                <View style={styles.item}>
+                    <Text style={styles.name}>昵称</Text>
+                    <Text style={styles.content}>awayisblue</Text>
+
+                </View>
+                <View style={styles.item}>
+                    <Text style={styles.name}>个性签名</Text>
+                    <Text style={styles.content}>Ta什么也没说</Text>
+                </View>
+                <View style={styles.item}>
+                    <Text style={styles.name}>生日</Text>
+                    <Text style={styles.content}>1993-08-08</Text>
+                </View>
+                <View style={styles.item}>
+                    <Text style={styles.name}>性别</Text>
+                    <Text style={styles.content}>男</Text>
+                </View>
+                <View style={styles.item}>
+                    <Text style={styles.name}>地区</Text>
+                    <Text style={styles.content}>广东广州</Text>
+                </View>
+                <View style={styles.item}>
+                    <Text style={styles.name}>邮箱</Text>
+                    <Text style={styles.content}>awayisblue@qq.com</Text>
+                </View>
+                <View style={styles.item}>
+                    <Text style={styles.name}>手机</Text>
+                    <Text style={styles.content}>13610246527</Text>
+                </View>
             </View>
         );
     }
@@ -44,24 +65,40 @@ class Component extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: '#F5FCFF',
+        flexDirection:'column',
+        justifyContent:'flex-start',
     },
-    demo: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
+
+    item:{
+        flexDirection:'row',
+        justifyContent:'flex-end',
+        alignItems:'center',
+        borderColor:'grey',
+        borderBottomWidth:1.5,
+        paddingTop:8,
+        paddingBottom:8
     },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
+    name:{
+        width:80,
+        textAlign:'left',
+        color:'grey',
+        marginLeft:10
     },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
+    content:{
+        flex:1,
+        textAlign:'right',
+        marginRight:5,
+        color:'grey'
+    },
+    avatar:{
+        flex:1,
+        alignItems:'flex-end',
+        marginRight:5,
+    },
+    image:{
+        width: 45,
+        height: 45
     },
 });
 
