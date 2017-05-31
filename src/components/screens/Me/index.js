@@ -1,6 +1,4 @@
-/**
- * Created by John on 2017/5/27.
- */
+
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {
@@ -11,12 +9,20 @@ import {
 } from 'react-native';
 
 class App extends Component {
+    static navigationOptions = {
+        title: '我',
+        headerRight: <Button title='设置'/>
+    };
+    constructor(props){
+        super(props)
+    }
+
     render() {
         let {demo,onIncrease,onDecrease} = this.props
         return (
             <View style={styles.container}>
                 <Text style={styles.demo}>
-                   Redux demo:{demo}
+                    Redux demo:{demo}
                 </Text>
                 <Button onPress={onIncrease} title='Increase'/>
                 <Button onPress={onDecrease} title='Decrease'/>
@@ -66,8 +72,10 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+    const { navigate } = ownProps.navigation;
     return {
         onIncrease: () => {
+            navigate('Test')
             dispatch({type:'demo.increase'})
         },
         onDecrease: ()=>{

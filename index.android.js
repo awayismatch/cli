@@ -6,7 +6,7 @@
 
 import React, { Component } from 'react';
 import {Provider} from 'react-redux'
-import App from './src/components/app'
+import App from './src/app.android'
 import store from './src/store'
 import {
     AppRegistry,
