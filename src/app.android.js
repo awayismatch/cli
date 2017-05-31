@@ -12,5 +12,5 @@ import InfoEdit from './components/screens/__global/InfoEdit'
 export default StackNavigator({
     // Test: { screen: Splash },
     MainTabs: { screen: MainTabs },
-    InfoEdit:{screen:InfoEdit},
+    InfoEdit: { screen: InfoEdit},
 });

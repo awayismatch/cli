@@ -10,11 +10,12 @@ import {
     RefreshControl
 } from 'react-native';
 import Item from './Item'
+import HeaderButton from '../__global/HeaderButton'
 
 class Component extends React.Component {
     static navigationOptions = {
         title: '聊天室',
-        headerRight: <Button title='创建'/>
+        headerRight: <HeaderButton text="创建"/>
     };
     constructor(props){
         super(props)

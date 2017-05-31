@@ -11,10 +11,21 @@ import {
 } from 'react-native';
 import Picker from 'react-native-picker';
 
+import HeaderButton from './HeaderButton'
 class Component extends React.Component {
     static navigationOptions = ({navigation})=> ({
         title: '完善个人信息',
-        headerRight: <Button title='确定'/>
+        headerRight: <HeaderButton text="确定" outStanding='true'/>,
+        headerStyle:{
+            backgroundColor:'grey',
+        },
+        headerTitleStyle:{
+            color:'white'
+        },
+        headerBackTitleStyle:{
+            color:'white'
+        },
+        headerTintColor:'white'
     })
     constructor(props){
         super(props)

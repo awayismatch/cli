@@ -8,7 +8,7 @@ import {
     Button
 } from 'react-native';
 import AlphabetListView from 'react-native-alphabetlistview'
-
+import HeaderButton from '../__global/HeaderButton'
 class SectionHeader extends React.Component {
     render() {
         // inline styles used for brevity, use a stylesheet when possible
@@ -52,7 +52,7 @@ class Cell extends React.Component  {
 class Component extends React.Component {
     static navigationOptions = {
         title: '联系人',
-        headerRight: <Button title='好友申请'/>
+        headerRight: <HeaderButton text="好友申请"/>
     };
     constructor(props, context) {
         super(props, context);

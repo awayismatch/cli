@@ -1,6 +1,6 @@
 
 
-import React, { Component } from 'react';
+import React from 'react';
 import {connect} from 'react-redux'
 import {
     StyleSheet,
@@ -9,7 +9,7 @@ import {
     Button
 } from 'react-native';
 
-class App extends Component {
+class Component extends React.Component {
     render() {
         return (
             <View style={styles.container}>
@@ -85,4 +85,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         }
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(App)
+export default connect(mapStateToProps,mapDispatchToProps)(Component)

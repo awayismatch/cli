@@ -8,13 +8,13 @@ import {
     Button,
     Image
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
-import InfoEdit from '../__global/InfoEdit';
 
+import InfoEdit from '../__global/InfoEdit';
+import HeaderButton from '../__global/HeaderButton'
 class Component extends React.Component {
     static navigationOptions = {
         title: '我',
-        headerRight: <Button title='设置'/>
+        headerRight: <HeaderButton text="设置"/>
     };
     constructor(props){
         super(props)
