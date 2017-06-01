@@ -13,10 +13,12 @@ import Item from './Item'
 import HeaderButton from '../__global/HeaderButton'
 
 class Component extends React.Component {
-    static navigationOptions = {
+    static navigationOptions = ({navigation,screenProps})=>({
         title: '聊天室',
-        headerRight: <HeaderButton text="创建"/>
-    };
+        headerRight: <HeaderButton text="创建" onPress={()=>{
+            navigation.navigate('ChatRoomCreation')
+        }}/>
+    })
     constructor(props){
         super(props)
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -28,22 +30,27 @@ class Component extends React.Component {
             dataSource: ds.cloneWithRows(list),
             refreshing:false
         };
+        this.onRefresh = this.onRefresh.bind(this)
+        this.onItemPress = this.onItemPress.bind(this)
     }
-    _onRefresh() {
+    onRefresh() {
         this.setState({refreshing: true});
         setTimeout(() => {
             this.setState({refreshing: false});
         },1000);
     }
+    onItemPress(){
+        const {navigate} = this.props.navigation
+        navigate('ChatRoomDetails')
+    }
     render() {
-
         return (
             <ListView dataSource={this.state.dataSource}
-                      renderRow={(rowData) => <Item/>}
+                      renderRow={(rowData) => <Item onPress={this.onItemPress}/>}
                       refreshControl={
                           <RefreshControl
                             refreshing={this.state.refreshing}
-                            onRefresh={this._onRefresh.bind(this)}
+                            onRefresh={this.onRefresh.bind(this)}
                           />
                       }
             >
