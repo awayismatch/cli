@@ -10,6 +10,7 @@ import {
     TextInput
 } from 'react-native';
 import Picker from 'react-native-picker';
+import pickerData from '../../../utils/pickerData';
 
 import HeaderButton from './HeaderButton'
 class Component extends React.Component {
@@ -30,29 +31,57 @@ class Component extends React.Component {
     constructor(props){
         super(props)
     }
-    render(){
+    componentWillMount(){
         let {field} = this.props.navigation.state.params
-        let isSelection = false
+        this.isSelection = false
+
         switch (field){
             case '生日':
+                Picker.init({
+                    pickerData:pickerData.birthdayData,
+                    selectedValue:['1993','08','08']
+                })
+                this.isSelection = true
+                break
             case '性别':
+                Picker.init({
+                    pickerData:pickerData.genderData,
+                    selectedValue:['男']
+                })
+                this.isSelection = true
+                break
             case '地区':
-                isSelection = true
+                Picker.init({
+                    pickerData:pickerData.regionData,
+                    selectedValue:['广东','广州市']
+                })
+                this.isSelection = true
                 break
             default:
-
         }
-        let content = isSelection?<View style={styles.item}>
-                <Text style={styles.name}>{field}</Text>
-                <Text style={styles.content}>awayisblue</Text>
-            </View>:<View style={styles.inputItem}>
-
-                <TextInput
-                    style={styles.input}
-                    placeholder="Type here to translate!"
-                    onChangeText={(text) => this.setState({text})}
-                />
-            </View>
+    }
+    componentDidMount(){
+        if(this.isSelection)Picker.show()
+    }
+    render(){
+        let {field} = this.props.navigation.state.params
+        let content = null
+        if(this.isSelection){
+            content = <View style={styles.item}>
+                         <Text style={styles.name}>{field}</Text>
+                         <Text style={styles.content} onPress={()=>{
+                             Picker.show()
+                         }
+                         }>awayisblue</Text>
+                      </View>
+        }else{
+            content = <View style={styles.inputItem}>
+                         <TextInput
+                            style={styles.input}
+                            placeholder="Type here to translate!"
+                            onChangeText={(text) => this.setState({text})}/>
+                      </View>
+        }
         return <View style={styles.container}>
                     <Text style={styles.desc}>请设置{field}</Text>
                     {content}
