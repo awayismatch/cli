@@ -6,7 +6,8 @@ import {
     Text,
     View,
     Button,
-    Image
+    Image,
+    TouchableWithoutFeedback
 } from 'react-native';
 
 import InfoEdit from '../__global/InfoEdit';
@@ -19,7 +20,6 @@ class Component extends React.Component {
     constructor(props){
         super(props)
         this.navigateTo = this.navigateTo.bind(this)
-
     }
     navigateTo(name,field){
         const {navigate} = this.props.navigation
@@ -31,9 +31,14 @@ class Component extends React.Component {
                 <View style={styles.item}>
                     <Text style={styles.name}>头像</Text>
                     <View style={styles.avatar}>
-                        <Image source={{uri: 'http://p1.qzone.la/upload/3/bp6l0xdv.jpg'}}
-                               style={styles.image} />
+                        <TouchableWithoutFeedback  onPress={()=>{
+                        this.navigateTo('InfoEdit','头像')
+                    }}>
+                            <Image source={{uri: 'http://p1.qzone.la/upload/3/bp6l0xdv.jpg'}}
+                                   style={styles.image} />
+                        </TouchableWithoutFeedback>
                     </View>
+
                 </View>
                 <View style={styles.item}>
                     <Text style={styles.name}>昵称</Text>

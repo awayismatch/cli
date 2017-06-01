@@ -7,11 +7,12 @@ import {
     View,
     Button,
     Image,
-    TextInput
+    TextInput,
+    TouchableWithoutFeedback
 } from 'react-native';
 import Picker from 'react-native-picker';
 import pickerData from '../../../utils/pickerData';
-
+import ImagePicker from 'react-native-image-crop-picker';
 import HeaderButton from './HeaderButton'
 class Component extends React.Component {
     static navigationOptions = ({navigation})=> ({
@@ -30,11 +31,13 @@ class Component extends React.Component {
     })
     constructor(props){
         super(props)
+        this.onSelectionPress = this.onSelectionPress.bind(this)
+        this.onAvatarPress = this.onAvatarPress.bind(this)
     }
     componentWillMount(){
         let {field} = this.props.navigation.state.params
         this.isSelection = false
-
+        this.isAvatar = false
         switch (field){
             case '生日':
                 Picker.init({
@@ -57,22 +60,47 @@ class Component extends React.Component {
                 })
                 this.isSelection = true
                 break
+            case '头像':
+                this.isAvatar = true
+                break
             default:
         }
     }
+    onAvatarPress(){
+        this.isAvatar && ImagePicker.openPicker({
+            width: 300,
+            height: 300,
+            cropping: true
+        }).then(image => {
+            console.log(image);
+        }).catch((err)=>{
+            console.log(err)
+        });
+    }
+    onSelectionPress(){
+        this.isSelection && Picker.show()
+    }
     componentDidMount(){
-        if(this.isSelection)Picker.show()
+        this.isSelection && Picker.show()
     }
     render(){
         let {field} = this.props.navigation.state.params
         let content = null
-        if(this.isSelection){
+        if(this.isAvatar){
+            content = <View style={styles.item}>
+                    <Text style={styles.name}>头像</Text>
+                    <View style={styles.avatar} >
+                        <TouchableWithoutFeedback onPress={this.onAvatarPress}>
+                            <Image source={{uri: 'http://p1.qzone.la/upload/3/bp6l0xdv.jpg'}}
+                                   style={styles.image}/>
+                        </TouchableWithoutFeedback>
+
+                    </View>
+                </View>
+        }else if(this.isSelection){
             content = <View style={styles.item}>
                          <Text style={styles.name}>{field}</Text>
-                         <Text style={styles.content} onPress={()=>{
-                             Picker.show()
-                         }
-                         }>awayisblue</Text>
+                         <Text style={styles.content} onPress={this.onSelectionPress}>awayisblue</Text>
                       </View>
         }else{
             content = <View style={styles.inputItem}>
@@ -140,7 +168,15 @@ const styles = StyleSheet.create({
         marginRight:5,
         color:'grey'
     },
-
+    avatar:{
+        flex:1,
+        alignItems:'flex-end',
+        marginRight:5,
+    },
+    image:{
+        width: 45,
+        height: 45
+    },
 
 });
 
