@@ -30,7 +30,6 @@ class Component extends React.Component {
     })
     constructor(props){
         super(props)
-
     }
 
     navigateTo(name,field){

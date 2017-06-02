@@ -6,20 +6,17 @@ import {
     Text,
     View,
     Image,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    TextInput,
 } from 'react-native';
-
-
 
 import HeaderButton from '../../HeaderButton'
 import Item from './Item'
 
 class Component extends React.Component {
     static navigationOptions = ({navigation})=> ({
-        title: '好友申请',
-        headerRight: <HeaderButton text="添加好友" onPress={()=>{
-            navigation.navigate('SearchUser')
-        }}/>,
+        title: '添加好友',
+        headerRight: <HeaderButton text="搜索" outStanding='true'/>,
         headerStyle:{
             backgroundColor:'grey',
         },
@@ -33,31 +30,31 @@ class Component extends React.Component {
     })
     constructor(props){
         super(props)
+
     }
 
-    navigateTo(name,field){
-
-
-        const {navigate} = this.props.navigation
-        navigate(name,{field})
-    }
     render() {
 
         return <View style={styles.container}>
-           <Item result="已授受"/>
-           <Item result="已拒绝"/>
-           <Item />
+            <TextInput
+            style={styles.input}
+            placeholder="请输入手机号"
+            onChangeText={(text) => this.setState({text})}/>
+            <Item/>
         </View>
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop:10,
         flex: 1,
         backgroundColor: '#F5FCFF',
         flexDirection:'column',
         justifyContent:'flex-start',
+    },
+
+    input:{
+        textAlign:'center'
     },
 });
 
