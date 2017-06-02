@@ -5,17 +5,19 @@
 
 
 import { StackNavigator } from 'react-navigation';
-import MainTabs from './components/screens/mainTabs'
+import MainTabs from './components/screens/MainTabs'
 import Splash from './components/screens/Splash'
-import ChatRoomCreation from './components/screens/ChatRoom/Creation'
-import ChatRoomDetails from './components/screens/ChatRoom/Details'
-import InfoEdit from './components/screens/__global/InfoEdit'
+import ChatRoomCreation from './components/screens/ChatRoomCreation'
+import ChatRoomDetails from './components/screens/ChatRoomDetails'
+import FriendRequest from './components/screens/ContactRequest/index'
+import InfoEdit from './components/InfoEdit'
 
 export default StackNavigator({
-
+    FriendRequest: { screen: FriendRequest },
     MainTabs: { screen: MainTabs },
     InfoEdit: { screen: InfoEdit},
     ChatRoomDetails: { screen: ChatRoomDetails },
     Splash: { screen: Splash },
     ChatRoomCreation: { screen: ChatRoomCreation },
+
 });

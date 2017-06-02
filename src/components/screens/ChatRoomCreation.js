@@ -5,16 +5,18 @@ import {
     StyleSheet,
     Text,
     View,
+    Image,
     TouchableWithoutFeedback
 } from 'react-native';
 
 import Picker from 'react-native-picker';
 
-import HeaderButton from '../__global/HeaderButton'
-import pickerData from '../../../utils/pickerData';
+import HeaderButton from '../HeaderButton'
+import pickerData from '../../utils/pickerData';
 class Component extends React.Component {
     static navigationOptions = ({navigation})=> ({
-        title: '聊天室详情',
+        title: '创建聊天室',
+        headerRight: <HeaderButton text="确定" outStanding='true'/>,
         headerStyle:{
             backgroundColor:'grey',
         },
@@ -31,12 +33,18 @@ class Component extends React.Component {
 
     }
 
+    navigateTo(name,field){
+        const {navigate} = this.props.navigation
+        navigate(name,{field})
+    }
     render() {
 
         return <View style={styles.container}>
             <View style={styles.item}>
                 <Text style={styles.name}>话题</Text>
-                <Text style={styles.content}>Ta什么也没说</Text>
+                <Text style={styles.content} onPress={()=>{
+                        this.navigateTo('InfoEdit','话题')
+                    }}>Ta什么也没说</Text>
 
             </View>
             <View style={[styles.item,styles.descItem]}>
@@ -45,20 +53,36 @@ class Component extends React.Component {
             </View>
             <View style={styles.item}>
                 <Text style={styles.name}>成员性别</Text>
-                <Text style={styles.content}>按比例</Text>
+                <Text style={styles.content} onPress={()=>{
+                        console.log('成员press')
+                        Picker.init({
+                             pickerData:pickerData.chatRoomGenderData,
+                             selectedValue:['不限']
+                        })
+                        Picker.show()
+                    }}>按比例</Text>
             </View>
             <View style={styles.item}>
-                <Text style={styles.name}>人数情况</Text>
-                <Text style={styles.content}>男:20/30, 女:10/20</Text>
-            </View>
-            <View style={styles.buttonWrapper}>
-                <TouchableWithoutFeedback>
-                    <View style={styles.enterButton}>
-                        <Text style={styles.enterText}>加入</Text>
-                    </View>
-                </TouchableWithoutFeedback>
+                <Text style={styles.name}>人数</Text>
+                <Text style={styles.content} onPress={()=>{
+                        Picker.init({
+                             pickerData:pickerData.genPeopleAmountData(true,'男'),
+                             pickerTitleText:'总人数-男-女',
+                             selectedValue:['不限']
+                        })
+                        Picker.show()
+                    }}>50</Text>
             </View>
 
+            <View style={styles.item}>
+                <Text style={styles.name}>开放性</Text>
+                <Text style={styles.content} onPress={()=>{
+                        Picker.init({
+                             pickerData:pickerData.chatRoomOpenData,
+                        })
+                        Picker.show()
+                    }}>公开</Text>
+            </View>
         </View>
     }
 }
@@ -92,6 +116,7 @@ const styles = StyleSheet.create({
         marginLeft:10
     },
     desc:{
+        alignItems:'stretch',
         paddingLeft:10,
         paddingRight:5,
     },
@@ -101,22 +126,15 @@ const styles = StyleSheet.create({
         marginRight:5,
         color:'grey'
     },
-    buttonWrapper:{
-        alignItems:'center'
+    avatar:{
+        flex:1,
+        alignItems:'flex-end',
+        marginRight:5,
     },
-    enterButton:{
-        width:330,
-        backgroundColor:'green',
-        marginTop:25
-
+    image:{
+        width: 45,
+        height: 45
     },
-    enterText:{
-        textAlign:'center',
-        fontSize:25,
-        paddingTop:5,
-        paddingBottom:5,
-        color:'white'
-    }
 });
 
 const mapStateToProps = (state, ownProps) => {

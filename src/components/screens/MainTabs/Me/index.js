@@ -10,8 +10,8 @@ import {
     TouchableWithoutFeedback
 } from 'react-native';
 
-import InfoEdit from '../__global/InfoEdit';
-import HeaderButton from '../__global/HeaderButton'
+import InfoEdit from '../../../InfoEdit';
+import HeaderButton from '../../../HeaderButton'
 class Component extends React.Component {
     static navigationOptions = {
         title: '我',

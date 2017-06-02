@@ -11,7 +11,7 @@ import {
     TouchableWithoutFeedback
 } from 'react-native';
 import Picker from 'react-native-picker';
-import pickerData from '../../../utils/pickerData';
+import pickerData from '../utils/pickerData';
 import ImagePicker from 'react-native-image-crop-picker';
 import HeaderButton from './HeaderButton'
 class Component extends React.Component {

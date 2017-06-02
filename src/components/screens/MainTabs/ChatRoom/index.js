@@ -10,7 +10,7 @@ import {
     RefreshControl
 } from 'react-native';
 import Item from './Item'
-import HeaderButton from '../__global/HeaderButton'
+import HeaderButton from '../../../HeaderButton'
 
 class Component extends React.Component {
     static navigationOptions = ({navigation,screenProps})=>({
