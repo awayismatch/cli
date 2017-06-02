@@ -5,6 +5,7 @@ import {
     StyleSheet,
     Text,
     View,
+    ListView,
     Image,
     TouchableWithoutFeedback
 } from 'react-native';
@@ -31,23 +32,29 @@ class Component extends React.Component {
         },
         headerTintColor:'white'
     })
+
+
     constructor(props){
         super(props)
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        let list = []
+        for(let i=0;i<4;i++){
+            list.push(i)
+        }
+        this.state = {
+            dataSource: ds.cloneWithRows(list)
+        };
     }
 
-    navigateTo(name,field){
-
-
+    navigateTo(name){
         const {navigate} = this.props.navigation
-        navigate(name,{field})
+        navigate(name)
     }
-    render() {
 
-        return <View style={styles.container}>
-           <Item result="已授受"/>
-           <Item result="已拒绝"/>
-           <Item />
-        </View>
+    render() {
+        return <ListView dataSource={this.state.dataSource}
+                         renderRow={(rowData) => <Item onPress={()=>{this.navigateTo('Profile')}}/>}
+                />
     }
 }
 

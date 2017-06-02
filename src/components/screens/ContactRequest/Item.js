@@ -12,8 +12,9 @@ class Component extends React.Component {
     constructor(props){
         super(props)
     }
+
     render(){
-        const {result} = this.props
+        const {result,onPress} = this.props
         let operation
         if(result){
             operation = <View style={styles.operation}>
@@ -21,26 +22,32 @@ class Component extends React.Component {
                         </View>
         }else{
             operation = <View style={styles.operation}>
-                <TouchableWithoutFeedback>
-                    <View style={[styles.button,styles.refuse]}>
-                        <Text style={styles.buttonText}>拒绝</Text>
-                    </View>
+                            <TouchableWithoutFeedback>
+                                <View style={[styles.button,styles.refuse]}>
+                                    <Text style={styles.buttonText}>拒绝</Text>
+                                </View>
 
-                </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback>
-                    <View style={[styles.button,styles.accept]}>
-                        <Text style={styles.buttonText}>接受</Text>
-                    </View>
-                </TouchableWithoutFeedback>
-            </View>
+                            </TouchableWithoutFeedback>
+                            <TouchableWithoutFeedback>
+                                <View style={[styles.button,styles.accept]}>
+                                    <Text style={styles.buttonText}>接受</Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                        </View>
         }
         return <View style={styles.item}>
-            <Image source={{uri: 'http://p1.qzone.la/upload/3/bp6l0xdv.jpg'}}
-                   style={styles.image} />
-            <View style={styles.info}>
-                <Text style={styles.name}>小镇姑娘</Text>
-                <Text style={styles.content} numberOfLines={1}>你好，我是小镇姑娘,你好，我是小镇姑娘,你好，我是小镇姑娘</Text>
-            </View>
+            <TouchableWithoutFeedback onPress={onPress}>
+                <View style={styles.touchWrapper}>
+                    <Image source={{uri: 'http://p1.qzone.la/upload/3/bp6l0xdv.jpg'}}
+                           style={styles.image} />
+                    <View style={styles.info}>
+                        <Text style={styles.name}>小镇姑娘</Text>
+                        <Text style={styles.content} numberOfLines={1}>你好，我是小镇姑娘,你好，我是小镇姑娘,你好，我是小镇姑娘</Text>
+                    </View>
+                </View>
+
+            </TouchableWithoutFeedback>
+
             {operation}
         </View>
     }
@@ -58,6 +65,10 @@ const styles = StyleSheet.create({
         paddingBottom:8,
         marginTop:5,
 
+    },
+    touchWrapper:{
+        flexDirection:'row',
+        justifyContent:'flex-start',
     },
     image:{
         width: 45,

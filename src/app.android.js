@@ -11,10 +11,14 @@ import ChatRoomCreation from './components/screens/ChatRoomCreation'
 import ChatRoomDetails from './components/screens/ChatRoomDetails'
 import FriendRequest from './components/screens/ContactRequest'
 import SearchUser from './components/screens/SearchUser'
+import Profile from './components/screens/Profile'
+import AddFriend from './components/screens/AddFriend'
 import InfoEdit from './components/InfoEdit'
 
 export default StackNavigator({
     MainTabs: { screen: MainTabs },
+    AddFriend: { screen: AddFriend },
+    Profile: { screen: Profile },
     FriendRequest: { screen: FriendRequest },
     SearchUser: { screen: SearchUser },
     InfoEdit: { screen: InfoEdit},

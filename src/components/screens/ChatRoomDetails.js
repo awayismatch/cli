@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     },
     enterText:{
         textAlign:'center',
-        fontSize:25,
+        fontSize:20,
         paddingTop:5,
         paddingBottom:5,
         color:'white'

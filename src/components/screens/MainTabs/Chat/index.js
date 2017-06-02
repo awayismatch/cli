@@ -29,10 +29,8 @@ class Component extends React.Component {
 
         return (
             <ListView dataSource={this.state.dataSource}
-                      renderRow={(rowData) => <Item/>}
-            >
+                      renderRow={(rowData) => <Item/>}/>
 
-            </ListView>
         );
     }
 }
