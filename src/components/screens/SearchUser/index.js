@@ -31,6 +31,12 @@ class Component extends React.Component {
     constructor(props){
         super(props)
 
+        this.navigateTo = this.navigateTo.bind(this)
+    }
+
+    navigateTo(name){
+        const {navigate} = this.props.navigation
+        navigate(name)
     }
 
     render() {
@@ -40,7 +46,7 @@ class Component extends React.Component {
             style={styles.input}
             placeholder="请输入手机号"
             onChangeText={(text) => this.setState({text})}/>
-            <Item/>
+            <Item onPress={()=>{this.navigateTo('AddFriend')}}/>
         </View>
     }
 }

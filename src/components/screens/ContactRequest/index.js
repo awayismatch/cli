@@ -44,6 +44,7 @@ class Component extends React.Component {
         this.state = {
             dataSource: ds.cloneWithRows(list)
         };
+        this.navigateTo = this.navigateTo.bind(this)
     }
 
     navigateTo(name){

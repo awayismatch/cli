@@ -13,15 +13,17 @@ class Component extends React.Component {
         super(props)
     }
     render(){
-        const {result} = this.props
+        const {onPress} = this.props
 
-        return <View style={styles.item}>
-            <Image source={{uri: 'http://p1.qzone.la/upload/3/bp6l0xdv.jpg'}}
-                   style={styles.image} />
+        return <TouchableWithoutFeedback onPress={onPress}>
+                    <View style={styles.item}>
+                        <Image source={{uri: 'http://p1.qzone.la/upload/3/bp6l0xdv.jpg'}}
+                               style={styles.image} />
 
-            <Text style={styles.name}>小镇姑娘</Text>
+                        <Text style={styles.name}>小镇姑娘</Text>
 
-        </View>
+                    </View>
+            </TouchableWithoutFeedback>
     }
 }
 
