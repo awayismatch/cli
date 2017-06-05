@@ -6,12 +6,15 @@ import {
     StyleSheet,
     Text,
     View,
-    Button
+    Button,
+    TouchableWithoutFeedback
 } from 'react-native';
 
 class Component extends React.Component {
     render() {
+        const {onPress} = this.props
         return (
+        <TouchableWithoutFeedback onPress={onPress}>
             <View style={styles.container}>
                 <View style={styles.roomType}>
                     <Text style={styles.typeText}>男</Text>
@@ -23,6 +26,8 @@ class Component extends React.Component {
                 </View>
                 <Text style={styles.roomTopic}>说说租房遇到的奇葩事</Text>
             </View>
+        </TouchableWithoutFeedback>
+
         );
     }
 }

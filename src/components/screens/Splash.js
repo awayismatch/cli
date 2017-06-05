@@ -5,7 +5,11 @@ import {
     StyleSheet,
     Text,
     View,
-    Button
+    Button,
+    Alert,
+    Modal,
+    ProgressBarAndroid,
+    StatusBar,
 } from 'react-native';
 import {NavigationActions} from 'react-navigation'
 
@@ -23,8 +27,13 @@ class App extends Component {
         let {onNext} = this.props
         return (
             <View style={styles.container}>
-                <Text>Splash...</Text>
-                <Button onPress={onNext} title='下一步'/>
+
+                <View style={styles.overlay}>
+                    <View >
+                        <Text style={styles.text}>what </Text>
+                    </View>
+                </View>
+                <Button title={'这'} onPress={()=>{}}/>
             </View>
         );
     }
@@ -35,23 +44,25 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor:'white'
     },
-    demo: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
+    overlay:{
+        flexDirection:'column',
+        justifyContent:'center',
+        alignSelf:'center',
+        zIndex:200,
+        flex:1,
+        position:'absolute',
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        left:0,
+        top:0,
+        right:0,
+        bottom:0
     },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
+    text:{
+        alignSelf:'center',
+    }
+
 });
 
 const mapStateToProps = (state, ownProps) => {

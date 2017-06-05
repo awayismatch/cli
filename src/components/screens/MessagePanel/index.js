@@ -5,36 +5,53 @@ import {
     StyleSheet,
     Text,
     View,
-    Button,
+    Image,
+    TouchableWithoutFeedback,
     ListView
 } from 'react-native';
+
+
+
+import HeaderButton from '../../HeaderButton'
 import Item from './Item'
+import InputControl from './InputControl'
+
 class Component extends React.Component {
-    static navigationOptions = {
-        title: '会话',
-        backgroundColor: 'grey',
-    };
+    static navigationOptions = ({navigation})=> ({
+        title: '某某聊天室',
+        headerRight: <View style={{flexDirection:'row'}}><HeaderButton text="成员" /><HeaderButton text="详情"/></View>,
+        headerStyle:{
+            backgroundColor:'grey',
+        },
+        headerTitleStyle:{
+            color:'white'
+        },
+        headerBackTitleStyle:{
+            color:'white'
+        },
+        headerTintColor:'white'
+    })
     constructor(props){
         super(props)
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         let list = []
-        for(let i=0;i<20;i++){
+        for(let i=0;i<10;i++){
             list.push(i)
         }
         this.state = {
             dataSource: ds.cloneWithRows(list)
         };
-        this.onItemPress = this.onItemPress.bind(this)
-    }
-    onItemPress(){
-        const {navigate} = this.props.navigation
-        navigate('MessagePanel')
     }
     render() {
 
         return (
-            <ListView dataSource={this.state.dataSource}
-                      renderRow={(rowData) => <Item onPress={this.onItemPress}/>}/>
+            <View style={styles.container}>
+                <ListView dataSource={this.state.dataSource}
+                          style={styles.list}
+                          renderRow={(rowData) => <Item self={!!(rowData%2)}/>}/>
+                <InputControl/>
+            </View>
+
 
         );
     }
@@ -43,25 +60,13 @@ class Component extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        flexDirection:'column',
+        justifyContent:'flex-start',
     },
-    demo: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
+    list:{
+        flex:1,
     },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
+
 });
 
 const mapStateToProps = (state, ownProps) => {

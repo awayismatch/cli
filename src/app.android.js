@@ -13,17 +13,20 @@ import FriendRequest from './components/screens/ContactRequest'
 import SearchUser from './components/screens/SearchUser'
 import Profile from './components/screens/Profile'
 import AddFriend from './components/screens/AddFriend'
+import MessagePanel from './components/screens/MessagePanel'
 import InfoEdit from './components/InfoEdit'
 
 export default StackNavigator({
     MainTabs: { screen: MainTabs },
+    MessagePanel: { screen: MessagePanel },
+    Splash: { screen: Splash },
     AddFriend: { screen: AddFriend },
     Profile: { screen: Profile },
     FriendRequest: { screen: FriendRequest },
     SearchUser: { screen: SearchUser },
     InfoEdit: { screen: InfoEdit},
     ChatRoomDetails: { screen: ChatRoomDetails },
-    Splash: { screen: Splash },
+
     ChatRoomCreation: { screen: ChatRoomCreation },
 
 });
