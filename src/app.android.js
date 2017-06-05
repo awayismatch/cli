@@ -14,9 +14,13 @@ import SearchUser from './components/screens/SearchUser'
 import Profile from './components/screens/Profile'
 import AddFriend from './components/screens/AddFriend'
 import MessagePanel from './components/screens/MessagePanel'
+import ChatRoomMemberList from './components/screens/ChatRoomMemberList'
+import ChatRoomProfile from './components/screens/ChatRoomProfile'
 import InfoEdit from './components/InfoEdit'
 
 export default StackNavigator({
+    ChatRoomProfile: { screen: ChatRoomProfile },
+    ChatRoomMemberList: { screen: ChatRoomMemberList },
     MainTabs: { screen: MainTabs },
     MessagePanel: { screen: MessagePanel },
     Splash: { screen: Splash },

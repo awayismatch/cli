@@ -5,16 +5,15 @@ import {
     StyleSheet,
     Text,
     View,
+    Button,
+    Image,
     TouchableWithoutFeedback
 } from 'react-native';
 
-import Picker from 'react-native-picker';
 
-import HeaderButton from '../HeaderButton'
-import pickerData from '../../utils/pickerData';
 class Component extends React.Component {
-    static navigationOptions = ({navigation})=> ({
-        title: '聊天室详情',
+    static navigationOptions = ({navigation,screenProps})=>({
+        title: screenProps.title || '资料详情',
         headerStyle:{
             backgroundColor:'grey',
         },
@@ -28,7 +27,11 @@ class Component extends React.Component {
     })
     constructor(props){
         super(props)
-
+        this.navigateTo = this.navigateTo.bind(this)
+    }
+    navigateTo(name){
+        const {navigate} = this.props.navigation
+        navigate(name)
     }
 
     render() {
@@ -53,13 +56,14 @@ class Component extends React.Component {
             </View>
             <View style={styles.buttonWrapper}>
                 <TouchableWithoutFeedback>
-                    <View style={styles.enterButton}>
-                        <Text style={styles.enterText}>加入</Text>
+                    <View style={styles.leaveButton}>
+                        <Text style={styles.buttonText}>删除并退出</Text>
                     </View>
                 </TouchableWithoutFeedback>
             </View>
 
         </View>
+
     }
 }
 
@@ -104,19 +108,19 @@ const styles = StyleSheet.create({
     buttonWrapper:{
         alignItems:'stretch'
     },
-    enterButton:{
+    leaveButton:{
         marginLeft:10,
         marginRight:10,
-        backgroundColor:'green',
+        backgroundColor:'pink',
         marginTop:25
 
     },
-    enterText:{
+    buttonText:{
         textAlign:'center',
         fontSize:20,
         paddingTop:5,
         paddingBottom:5,
-        color:'white'
+        color:'grey'
     }
 });
 
@@ -138,4 +142,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         }
     }
 }
+
+
 export default connect(mapStateToProps,mapDispatchToProps)(Component)
