@@ -10,7 +10,7 @@ import {
     TouchableWithoutFeedback
 } from 'react-native';
 
-
+import Switch from '../Switch'
 class Component extends React.Component {
     static navigationOptions = ({navigation,screenProps})=>({
         title: screenProps.title || '资料详情',
@@ -47,13 +47,13 @@ class Component extends React.Component {
                 <Text style={styles.desc}>当有描述时显示此行当有描述时显示此行当有描述时显示此行当有描述时显示此行当有描述时显示此行当有描述时显示此行当有描述时显示此行当有描述时显示此行</Text>
             </View>
             <View style={styles.item}>
-                <Text style={styles.name}>成员性别</Text>
-                <Text style={styles.content}>按比例</Text>
+                <Text style={styles.name}>消息免打扰</Text>
+                <View style={styles.switchWrapper}>
+                    <Switch/>
+                </View>
+
             </View>
-            <View style={styles.item}>
-                <Text style={styles.name}>人数情况</Text>
-                <Text style={styles.content}>男:20/30, 女:10/20</Text>
-            </View>
+
             <View style={styles.buttonWrapper}>
                 <TouchableWithoutFeedback>
                     <View style={styles.leaveButton}>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
 
     item:{
         flexDirection:'row',
-        justifyContent:'flex-start',
+        justifyContent:'space-between',
         alignItems:'center',
         borderColor:'grey',
         borderBottomWidth:1.5,
@@ -121,7 +121,10 @@ const styles = StyleSheet.create({
         paddingTop:5,
         paddingBottom:5,
         color:'grey'
-    }
+    },
+    switchWrapper:{
+        marginRight:10,
+    },
 });
 
 const mapStateToProps = (state, ownProps) => {
